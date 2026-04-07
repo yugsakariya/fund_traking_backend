@@ -25,6 +25,11 @@ async function handleRequest(req, res) {
   try {
     // ===== PUBLIC ROUTES =====
 
+    // GET /api/health
+    if (method === "GET" && path === "/api/health") {
+      return sendJSON(res, 200, { status: "ok", timestamp: new Date().toISOString() });
+    }
+
     // POST /api/auth/login
     if (method === "POST" && path === "/api/auth/login") {
       const body = await parseBody(req);
